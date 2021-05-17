@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    * {
+  background-color: rgba(0,0,0,0.06);
+  box-shadow: 0 0 1px red;
+}
+div {
+  width: 300px;
+  height: 200px;
+  border: 5px solid black;
+  position: relative;
+}
+input:focus + span {
+  display: block;
+}
+input + span {
+  pointer-events: none;
+ /*  元素不可选中（点击），内部可以选中（点击） */
+  display: none;
+  color: red;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  right:-5px;
+  bottom: -5px;
+  border: 5px solid red;
+}
+/* 当光标在该元素的内部时，进行该样式行为 */
+div.b:focus-within {
+  border-color: red;
+}
+
+/* 后面出现的元素影响前面的元素：例子，微信朋友圈照片 */
+/* 使用选择器选中，有且仅有 */
+ul {
+  margin:0;
+  padding:0;
+  list-style: none;
+  font-size: 0px;
+}
+li {
+  box-sizing: border-box;
+  display: inline-block;
+  border: 2px solid #92837457;
+}
+ul li:first-child:nth-last-child(4), ul li:first-child:nth-last-child(4) ~ li,
+ul li:first-child:nth-last-child(4), ul li:first-child:nth-last-child(4) ~ li {
+  width: 50%;
+  padding-top: 50%;
+  /* 高度时被元素内容，padding，border撑起来的 */
+}
+
+ul li:first-child:nth-last-child(3), ul li:first-child:nth-last-child(3) ~ li {
+  width: 33.333%;
+  padding-bottom: 33.333%;
+}
+
+ul li:first-child:nth-last-child(5), ul li:first-child:nth-last-child(5) + li {
+  width: 50%;
+  padding-bottom: 50%;
+}
+ul li:first-child:nth-last-child(5) + li ~li {
+  width: 33.333%;
+  padding-bottom: 33.333%;
+}
+
+ul li:first-child:nth-last-child(7),ul li:first-child:nth-last-child(7) {
+  width: 33.333%;
+  padding-bottom: 33.333%;
+}
+  </style>
+</head>
+<body>
+  <ul>
+       <li></li>
+        <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div class="a">
+    <input type="text">
+    <span>aa</span>
+  </div>
+  <div class="b">
+    <input type="text">
+  </div>
+</body>
+</html>
